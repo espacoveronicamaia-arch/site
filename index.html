@@ -168,18 +168,13 @@ nav{
   display:grid;grid-template-columns:repeat(2,1fr);gap:24px;
 }
 .svc-card{
-  background:var(--white);position:relative;overflow:hidden;
-  cursor:default;transition:box-shadow .3s;
+  background:var(--white);padding:28px;border:1px solid var(--border);
+  border-radius:4px;transition:box-shadow .3s;display:flex;flex-direction:column;gap:8px;
 }
-.svc-card:hover{box-shadow:0 20px 60px rgba(0,0,0,.08)}
-.svc-photo{width:100%;aspect-ratio:3/2;overflow:hidden}
-.svc-photo img{width:100%;height:100%;object-fit:cover;transition:transform .5s ease}
-.svc-card:hover .svc-photo img{transform:scale(1.06)}
-.svc-body{padding:24px 28px 28px}
-.svc-num{font-family:'Cormorant Garamond',serif;font-size:.85rem;color:var(--rose-lt);margin-bottom:8px}
-.svc-name{font-family:'Cormorant Garamond',serif;font-size:1.4rem;font-weight:600;color:var(--dark);margin-bottom:6px}
-.svc-desc{font-size:.78rem;color:var(--soft);line-height:1.6;font-weight:300}
-
+.svc-card:hover{box-shadow:0 8px 32px rgba(0,0,0,.08)}
+.svc-name{font-family:'Cormorant Garamond',serif;font-size:1.3rem;font-weight:600;color:var(--dark);margin-bottom:4px}
+.svc-desc{font-size:.78rem;color:var(--soft);line-height:1.6;font-weight:300;flex:1}
+.svc-price{font-family:'Cormorant Garamond',serif;font-size:1.2rem;font-weight:600;color:var(--rose);margin-top:8px}
 /* ── PRICES ── */
 .prices{
   display:grid;grid-template-columns:1fr 1fr;
