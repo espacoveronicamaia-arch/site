@@ -700,123 +700,6 @@ footer{
   </div>
 </section>
 
-<script type="text/javascript">
-var selectedService = null;
-
-function selectService(el) {
-  document.querySelectorAll('.svc-opt').forEach(function(o){ o.classList.remove('selected'); });
-  el.classList.add('selected');
-  selectedService = {
-    name: el.dataset.service,
-    duration: el.dataset.duration,
-    mins: parseInt(el.dataset.mins)
-  };
-  document.getElementById('timeHint').innerHTML =
-   '✦ <strong>' + selectedService.name + '</strong> - reservar <strong>' + selectedService.duration + '</strong> na agenda. Veja os horários livres no calendário e preencha abaixo.';
-  updateSummary();
-}
-
-function pad(n){ return n < 10 ? '0'+n : n; }
-
-function addMinutes(time, mins) {
-  var parts = time.split(':');
-  var d = new Date(2000,0,1,parseInt(parts[0]),parseInt(parts[1]));
-  d.setMinutes(d.getMinutes() + mins);
-  return pad(d.getHours()) + ':' + pad(d.getMinutes());
-}
-
-function formatDate(dateStr) {
-  if (!dateStr) return '';
-  var parts = dateStr.split('-');
-  return parts[2] + '/' + parts[1] + '/' + parts[0];
-}
-
-function updateSummary() {
-  var date = document.getElementById('bookDate').value;
-  var time = document.getElementById('bookTime').value;
-  var summary = document.getElementById('bookingSummary');
-  if (selectedService && date && time) {
-    var end = addMinutes(time, selectedService.mins);
-    summary.style.display = 'block';
-    summary.innerHTML =
-      '<strong>Resumo do agendamento:</strong><br>' +
-      '🌸 Serviço: ' + selectedService.name + '<br>' +
-      '📅 Data: ' + formatDate(date) + '<br>' +
-      '⏰ Horário: ' + time + ' às ' + end + ' (' + selectedService.duration + ')';
-  } else {
-    summary.style.display = 'none';
-  }
-}
-
-
-
-document.getElementById('bookDate').addEventListener('change', updateSummary);
-document.getElementById('bookTime').addEventListener('change', updateSummary);
-
-function toCalendarDate(dateStr, timeStr) {
-  var d = dateStr.replace(/-/g,'');
-  var t = timeStr.replace(':','') + '00';
-  return d + 'T' + t;
-}
-
-function openPolicyModal() {
-  var date = document.getElementById('bookDate').value;
-  var time = document.getElementById('bookTime').value;
-  if (!selectedService) { alert('Por favor, escolha um serviço.'); return; }
-  if (!date) { alert('Por favor, selecione a data.'); return; }
-  if (!time) { alert('Por favor, selecione o horário.'); return; }
-  document.getElementById('policyCheck').checked = false;
-  var modal = document.getElementById('policyModal');
-  modal.style.display = 'flex';
-  document.body.style.overflow = 'hidden';
-}
-
-function closePolicyModal() {
-  document.getElementById('policyModal').style.display = 'none';
-  document.body.style.overflow = '';
-}
-
-function confirmAndSend() {
-  if (!document.getElementById('policyCheck').checked) {
-    alert('Por favor, confirme que leu e concordou com a política de agendamento.');
-    return;
-  }
-  closePolicyModal();
-  sendToWhatsApp();
-}
-
-// Close modal clicking outside
-document.addEventListener('DOMContentLoaded', function() {
-  document.getElementById('policyModal').addEventListener('click', function(e) {
-    if (e.target === this) closePolicyModal();
-  });
-});
-
-function sendToWhatsApp() {
-  var date = document.getElementById('bookDate').value;
-  var time = document.getElementById('bookTime').value;
-  if (!selectedService) { alert('Por favor, escolha um serviço.'); return; }
-  if (!date) { alert('Por favor, selecione a data.'); return; }
-  if (!time) { alert('Por favor, selecione o horário.'); return; }
-  var end = addMinutes(time, selectedService.mins);
-  var endTime = toCalendarDate(date, end);
-  var startTime = toCalendarDate(date, time);
-  var calLink = 'https://calendar.google.com/calendar/render?action=TEMPLATE' +
-    '&text=' + encodeURIComponent('🌸 ' + selectedService.name + ' – Cliente') +
-    '&dates=' + startTime + '/' + endTime +
-    '&details=' + encodeURIComponent('Agendamento via site Espaço Verônica Maia') +
-    '&location=' + encodeURIComponent('Rua Afonso Pena, 58, Uberlândia – MG');
-  var msg = 'Olá Verônica! Gostaria de agendar:\n\n' +
-    '🌸 *Serviço:* ' + selectedService.name + '\n' +
-    '📅 *Data:* ' + formatDate(date) + '\n' +
-    '⏰ *Horário:* ' + time + ' às ' + end + ' (' + selectedService.duration + ')\n\n' +
-    '📆 *Clique para salvar na sua agenda:*\n' + calLink + '\n\n' +
-    'Poderia confirmar meu agendamento?';
-  window.open('https://wa.me/5519981595542?text=' + encodeURIComponent(msg), '_blank');
-}
-</script>
-
-
 <!-- LOCATION -->
 <section class="location" id="localizacao">
   <div class="location-info">
@@ -958,6 +841,120 @@ document.querySelectorAll('.reveal').forEach(el => io.observe(el));
     </div>
   </div>
 </div>
+<script type="text/javascript">
+var selectedService = null;
 
+function selectService(el) {
+  document.querySelectorAll('.svc-opt').forEach(function(o){ o.classList.remove('selected'); });
+  el.classList.add('selected');
+  selectedService = {
+    name: el.dataset.service,
+    duration: el.dataset.duration,
+    mins: parseInt(el.dataset.mins)
+  };
+  document.getElementById('timeHint').innerHTML =
+   '✦ <strong>' + selectedService.name + '</strong> - reservar <strong>' + selectedService.duration + '</strong> na agenda. Veja os horários livres no calendário e preencha abaixo.';
+  updateSummary();
+}
+
+function pad(n){ return n < 10 ? '0'+n : n; }
+
+function addMinutes(time, mins) {
+  var parts = time.split(':');
+  var d = new Date(2000,0,1,parseInt(parts[0]),parseInt(parts[1]));
+  d.setMinutes(d.getMinutes() + mins);
+  return pad(d.getHours()) + ':' + pad(d.getMinutes());
+}
+
+function formatDate(dateStr) {
+  if (!dateStr) return '';
+  var parts = dateStr.split('-');
+  return parts[2] + '/' + parts[1] + '/' + parts[0];
+}
+
+function updateSummary() {
+  var date = document.getElementById('bookDate').value;
+  var time = document.getElementById('bookTime').value;
+  var summary = document.getElementById('bookingSummary');
+  if (selectedService && date && time) {
+    var end = addMinutes(time, selectedService.mins);
+    summary.style.display = 'block';
+    summary.innerHTML =
+      '<strong>Resumo do agendamento:</strong><br>' +
+      '🌸 Serviço: ' + selectedService.name + '<br>' +
+      '📅 Data: ' + formatDate(date) + '<br>' +
+      '⏰ Horário: ' + time + ' às ' + end + ' (' + selectedService.duration + ')';
+  } else {
+    summary.style.display = 'none';
+  }
+}
+
+
+
+document.getElementById('bookDate').addEventListener('change', updateSummary);
+document.getElementById('bookTime').addEventListener('change', updateSummary);
+
+function toCalendarDate(dateStr, timeStr) {
+  var d = dateStr.replace(/-/g,'');
+  var t = timeStr.replace(':','') + '00';
+  return d + 'T' + t;
+}
+
+function openPolicyModal() {
+  var date = document.getElementById('bookDate').value;
+  var time = document.getElementById('bookTime').value;
+  if (!selectedService) { alert('Por favor, escolha um serviço.'); return; }
+  if (!date) { alert('Por favor, selecione a data.'); return; }
+  if (!time) { alert('Por favor, selecione o horário.'); return; }
+  document.getElementById('policyCheck').checked = false;
+  var modal = document.getElementById('policyModal');
+  modal.style.display = 'flex';
+  document.body.style.overflow = 'hidden';
+}
+
+function closePolicyModal() {
+  document.getElementById('policyModal').style.display = 'none';
+  document.body.style.overflow = '';
+}
+
+function confirmAndSend() {
+  if (!document.getElementById('policyCheck').checked) {
+    alert('Por favor, confirme que leu e concordou com a política de agendamento.');
+    return;
+  }
+  closePolicyModal();
+  sendToWhatsApp();
+}
+
+// Close modal clicking outside
+document.addEventListener('DOMContentLoaded', function() {
+  document.getElementById('policyModal').addEventListener('click', function(e) {
+    if (e.target === this) closePolicyModal();
+  });
+});
+
+function sendToWhatsApp() {
+  var date = document.getElementById('bookDate').value;
+  var time = document.getElementById('bookTime').value;
+  if (!selectedService) { alert('Por favor, escolha um serviço.'); return; }
+  if (!date) { alert('Por favor, selecione a data.'); return; }
+  if (!time) { alert('Por favor, selecione o horário.'); return; }
+  var end = addMinutes(time, selectedService.mins);
+  var endTime = toCalendarDate(date, end);
+  var startTime = toCalendarDate(date, time);
+  var calLink = 'https://calendar.google.com/calendar/render?action=TEMPLATE' +
+    '&text=' + encodeURIComponent('🌸 ' + selectedService.name + ' – Cliente') +
+    '&dates=' + startTime + '/' + endTime +
+    '&details=' + encodeURIComponent('Agendamento via site Espaço Verônica Maia') +
+    '&location=' + encodeURIComponent('Rua Afonso Pena, 58, Uberlândia – MG');
+  var msg = 'Olá Verônica! Gostaria de agendar:\n\n' +
+    '🌸 *Serviço:* ' + selectedService.name + '\n' +
+    '📅 *Data:* ' + formatDate(date) + '\n' +
+    '⏰ *Horário:* ' + time + ' às ' + end + ' (' + selectedService.duration + ')\n\n' +
+    '📆 *Clique para salvar na sua agenda:*\n' + calLink + '\n\n' +
+    'Poderia confirmar meu agendamento?';
+  window.open('https://wa.me/5519981595542?text=' + encodeURIComponent(msg), '_blank');
+}
+</script>
 </body>
 </html>
