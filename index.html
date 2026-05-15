@@ -361,6 +361,39 @@ footer{
   .location-info{padding:48px 24px}
   footer{padding:40px 24px;flex-direction:column;text-align:center}
 }
+/* ── FIDELIDADE ── */
+.fidelidade{padding:100px 60px;background:var(--cream)}
+.fidelidade-header{text-align:center;margin-bottom:64px}
+.fidelidade-header .section-eyebrow{justify-content:center}
+.fidelidade-header .section-eyebrow::before{display:none}
+.fidelidade-intro{font-size:.88rem;color:var(--soft);line-height:1.9;max-width:560px;margin:0 auto 64px;text-align:center;font-weight:300}
+.niveis-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:16px;margin-bottom:80px}
+.nivel-card{background:var(--white);border:1px solid var(--border);padding:28px 20px;text-align:center;transition:box-shadow .3s;position:relative}
+.nivel-card:hover{box-shadow:0 8px 32px rgba(0,0,0,.08)}
+.nivel-card.destaque{border-color:var(--rose)}
+.nivel-icon{font-size:1.8rem;margin-bottom:16px;display:block}
+.nivel-nome{font-family:'Cormorant Garamond',serif;font-size:1.3rem;font-weight:600;color:var(--dark);margin-bottom:6px}
+.nivel-pts{font-size:.68rem;font-weight:500;letter-spacing:.14em;text-transform:uppercase;color:var(--rose);margin-bottom:20px}
+.nivel-beneficios{list-style:none;display:flex;flex-direction:column;gap:8px;text-align:left}
+.nivel-beneficios li{font-size:.78rem;color:var(--soft);display:flex;align-items:flex-start;gap:8px;line-height:1.5;font-weight:300}
+.nivel-beneficios li::before{content:'✦';color:var(--rose);font-size:.55rem;flex-shrink:0;margin-top:3px}
+.fidelidade-divisor{display:grid;grid-template-columns:1fr 1fr;gap:0;margin-bottom:80px}
+.fid-resgate{padding:48px 60px;background:var(--white);border:1px solid var(--border)}
+.fid-politica{padding:48px 60px;background:var(--rose-pale);border:1px solid var(--border)}
+.fid-subtitle{font-family:'Cormorant Garamond',serif;font-size:1.8rem;font-weight:300;color:var(--dark);margin-bottom:20px;line-height:1.2}
+.fid-subtitle em{font-style:italic;color:var(--rose)}
+.fid-text{font-size:.85rem;color:var(--soft);line-height:1.9;font-weight:300;margin-bottom:20px}
+.fid-regras{list-style:none;display:flex;flex-direction:column;gap:10px}
+.fid-regras li{font-size:.82rem;color:var(--mid);display:flex;align-items:flex-start;gap:10px;line-height:1.6}
+.fid-regras li::before{content:'✦';color:var(--rose);font-size:.6rem;flex-shrink:0;margin-top:4px}
+.fid-cta-wrap{text-align:center}
+.fid-cta-text{font-size:.85rem;color:var(--soft);line-height:1.9;font-weight:300;max-width:500px;margin:0 auto 32px}
+@media(max-width:900px){
+  .fidelidade{padding:60px 24px}
+  .niveis-grid{grid-template-columns:1fr}
+  .fidelidade-divisor{grid-template-columns:1fr}
+  .fid-resgate,.fid-politica{padding:36px 24px}
+}
 </style>
 </head>
 <body>
@@ -373,7 +406,7 @@ footer{
     <li><a href="#sobre">Sobre</a></li>
     <li><a href="#servicos">Serviços</a></li>
     
-    <li><a href="#localizacao">Localização</a></li>
+    <li><a ">Localização</a></li>
   </ul>
   <a class="nav-cta" href="#agenda">Agendar</a>
   <button class="burger" id="burgerBtn" aria-label="Menu">
@@ -388,7 +421,7 @@ footer{
     <li><a href="#sobre" class="mlink">Sobre</a></li>
     <li><a href="#servicos" class="mlink">Serviços</a></li>
    
-    <li><a href="#localizacao" class="mlink">Localização</a></li>
+    <li><a " class="mlink">Localização</a></li>
     <li><a href="https://wa.me/5519981595542" target="_blank">WhatsApp</a></li>
   </ul>
 </div>
@@ -568,7 +601,95 @@ footer{
     <a class="btn-light" href="https://instagram.com/veronicamanicureudia" target="_blank">Seguir no Instagram</a>
   </div>
 </div>
-
+<!-- FIDELIDADE -->
+<section class="fidelidade reveal" id="fidelidade">
+  <div class="fidelidade-header">
+    <div class="section-eyebrow">Programa Exclusivo</div>
+    <h2 class="section-title">Seja <em>Cliente Fiel</em></h2>
+  </div>
+  <p class="fidelidade-intro">A cada real investido no seu cuidado, você acumula pontos e sobe de nível — desbloqueando benefícios cada vez mais especiais. Porque quem é fiel merece ser reconhecida.</p>
+  <div class="niveis-grid">
+    <div class="nivel-card reveal">
+      <span class="nivel-icon">🤍</span>
+      <div class="nivel-nome">Clienta</div>
+      <div class="nivel-pts">A partir de 0 pts</div>
+      <ul class="nivel-beneficios">
+        <li>1 ponto a cada R$1 gasto</li>
+        <li>Resgate a partir de 500 pts</li>
+        <li>R$30 de desconto ou serviço cortesia</li>
+      </ul>
+    </div>
+    <div class="nivel-card reveal">
+      <span class="nivel-icon">🥈</span>
+      <div class="nivel-nome">Prata</div>
+      <div class="nivel-pts">A partir de 500 pts</div>
+      <ul class="nivel-beneficios">
+        <li>Todos os benefícios anteriores</li>
+        <li>Caneca personalizada exclusiva</li>
+        <li>15% de desconto no mês do aniversário</li>
+      </ul>
+    </div>
+    <div class="nivel-card reveal">
+      <span class="nivel-icon">🥇</span>
+      <div class="nivel-nome">Ouro</div>
+      <div class="nivel-pts">A partir de 1.500 pts</div>
+      <ul class="nivel-beneficios">
+        <li>Todos os benefícios anteriores</li>
+        <li>Caneca modelo exclusivo Ouro</li>
+        <li>Decoração simples cortesia</li>
+      </ul>
+    </div>
+    <div class="nivel-card destaque reveal">
+      <span class="nivel-icon">💎</span>
+      <div class="nivel-nome">Diamond</div>
+      <div class="nivel-pts">A partir de 3.000 pts</div>
+      <ul class="nivel-beneficios">
+        <li>Todos os benefícios anteriores</li>
+        <li>Caneca modelo exclusivo Diamond</li>
+        <li>Francesa cortesia</li>
+        <li>10% de desconto em todos os serviços</li>
+      </ul>
+    </div>
+    <div class="nivel-card reveal">
+      <span class="nivel-icon">👑</span>
+      <div class="nivel-nome">VIP</div>
+      <div class="nivel-pts">A partir de 5.000 pts</div>
+      <ul class="nivel-beneficios">
+        <li>Todos os benefícios anteriores</li>
+        <li>Caneca edição especial com seu nome</li>
+        <li>Combo Mão + Pé cortesia por mês</li>
+        <li>10% de desconto em todos os serviços</li>
+      </ul>
+    </div>
+  </div>
+  <div class="fidelidade-divisor">
+    <div class="fid-resgate">
+      <div class="section-eyebrow">Como resgatar</div>
+      <h3 class="fid-subtitle">Seus pontos, sua <em>escolha</em></h3>
+      <p class="fid-text">A cada 500 pontos acumulados, você escolhe como usar seu benefício:</p>
+      <ul class="fid-regras">
+        <li>R$30 de desconto no próximo serviço</li>
+        <li>1 serviço cortesia — francesa ou decoração simples</li>
+        <li>Pontos não expiram enquanto você frequentar o salão</li>
+        <li>Resgate disponível a qualquer momento, sem pressa</li>
+      </ul>
+    </div>
+    <div class="fid-politica">
+      <div class="section-eyebrow">Política do programa</div>
+      <h3 class="fid-subtitle">Simples e <em>transparente</em></h3>
+      <ul class="fid-regras">
+        <li>Pontos registrados somente após conclusão do atendimento</li>
+        <li>Pontos expiram após 180 dias sem movimentação</li>
+        <li>Programa pessoal e intransferível</li>
+        <li>Clientes frequentadoras recebem pontos retroativos no lançamento</li>
+      </ul>
+    </div>
+  </div>
+  <div class="fid-cta-wrap">
+    <p class="fid-cta-text">Pronta para começar? Agende seu próximo horário e já comece a acumular pontos. Cada visita te aproxima de um novo nível.</p>
+    <a class="btn-primary" href="#agenda">Agendar e começar a pontuar</a>
+  </div>
+</section>
 <!-- AGENDAMENTO -->
 <section class="booking" id="agenda">
   <div class="booking-inner">
@@ -861,6 +982,7 @@ function sendToWhatsApp() {
    
     <li><a href="#agenda">Agenda</a></li>
     <li><a href="#localizacao">Localização</a></li>
+<li><a href="#fidelidade">Fidelidade</a></li>
     <li><a href="https://wa.me/5519981595542" target="_blank">WhatsApp</a></li>
   </ul>
   <div class="footer-copy">© 2025 Verônica Maia · Uberlândia MG</div>
